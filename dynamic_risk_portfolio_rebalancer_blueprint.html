@@ -1,0 +1,1320 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap');
+
+  :root {
+    --c-navy: #0a1628;
+    --c-gold: #c9a227;
+    --c-gold-light: #e8c84a;
+    --c-slate: #1e2d45;
+    --c-blue: #1a4a8a;
+    --c-blue-mid: #2563b0;
+    --c-teal: #0e7490;
+    --c-green: #166534;
+    --c-amber: #92400e;
+    --c-red: #991b1b;
+    --c-muted: #64748b;
+    --c-border: rgba(201,162,39,0.2);
+    --c-border-light: rgba(255,255,255,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .blueprint {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    color: var(--color-text-primary);
+    line-height: 1.65;
+  }
+
+  /* Header */
+  .doc-header {
+    border-bottom: 1px solid var(--color-border-tertiary);
+    padding: 2rem 0 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .doc-header .kicker {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: 0.5rem;
+  }
+  .doc-header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+  .doc-header .subtitle {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.25rem;
+  }
+  .bank-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .bank-tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 0.5px solid var(--color-border-secondary);
+    color: var(--color-text-secondary);
+    background: var(--color-background-secondary);
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+  .section-num {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--color-text-tertiary);
+    min-width: 28px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  /* Info cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+    margin: 1rem 0;
+  }
+  .info-card {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 0.875rem 1rem;
+  }
+  .info-card .ic-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-tertiary);
+    margin-bottom: 0.3rem;
+  }
+  .info-card .ic-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+  .info-card .ic-sub {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin-top: 2px;
+  }
+
+  /* Grade table */
+  .grade-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 1rem 0;
+  }
+  .grade-table th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-tertiary);
+    border-bottom: 0.5px solid var(--color-border-secondary);
+    padding: 6px 10px;
+  }
+  .grade-table td {
+    padding: 7px 10px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    color: var(--color-text-primary);
+    vertical-align: middle;
+  }
+  .grade-table tr:last-child td { border-bottom: none; }
+  .grade-badge {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .risk-bar-wrap { width: 100%; background: var(--color-background-secondary); border-radius: 4px; height: 7px; overflow: hidden; }
+  .risk-bar { height: 7px; border-radius: 4px; }
+
+  /* Metric formula */
+  .formula-block {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-left: 3px solid var(--color-border-info);
+    border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+    padding: 0.875rem 1rem;
+    margin: 0.6rem 0;
+  }
+  .formula-block .f-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-info);
+    margin-bottom: 4px;
+  }
+  .formula-block .f-expr {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--color-text-primary);
+  }
+  .formula-block .f-why {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin-top: 4px;
+  }
+
+  /* State badges */
+  .state-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .state-row:last-child { border-bottom: none; }
+  .state-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+  .state-name { font-weight: 500; font-size: 13px; min-width: 80px; }
+  .state-action { font-size: 12px; color: var(--color-text-secondary); flex: 1; }
+  .state-trigger { font-size: 11px; padding: 2px 8px; border-radius: 12px; border: 0.5px solid var(--color-border-secondary); color: var(--color-text-secondary); }
+
+  /* PD Engine */
+  .pd-demo {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+  .pd-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+  .pd-label { font-size: 12px; color: var(--color-text-secondary); }
+  .pd-value { font-size: 18px; font-weight: 500; }
+  .drift-box {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: var(--color-background-danger);
+    border: 0.5px solid var(--color-border-danger);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .drift-label { font-size: 12px; color: var(--color-text-danger); font-weight: 500; }
+  .drift-value { font-size: 22px; font-weight: 500; color: var(--color-text-danger); }
+
+  /* Tech stack */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 1rem 0;
+  }
+  .tech-card {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1rem;
+  }
+  .tech-card h4 {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-tertiary);
+    margin-bottom: 0.5rem;
+  }
+  .tech-pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin: 2px 2px;
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-secondary);
+    color: var(--color-text-primary);
+  }
+
+  /* ASCII diagram */
+  .ascii-block {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    line-height: 1.55;
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1.25rem;
+    overflow-x: auto;
+    color: var(--color-text-secondary);
+    white-space: pre;
+  }
+
+  /* Risk drift interactive */
+  .drift-interactive {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1.25rem;
+    margin: 1rem 0;
+    background: var(--color-background-primary);
+  }
+  .drift-interactive label {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .slider-row { display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem; }
+  .slider-row input { flex: 1; }
+  .slider-row span { font-size: 13px; font-weight: 500; min-width: 44px; text-align: right; }
+
+  /* Prose */
+  p { margin-bottom: 0.75rem; color: var(--color-text-primary); }
+  p:last-child { margin-bottom: 0; }
+  ul, ol { padding-left: 1.25rem; margin: 0.5rem 0 0.75rem; }
+  li { margin-bottom: 0.3rem; font-size: 14px; color: var(--color-text-primary); }
+
+  .highlight-box {
+    background: var(--color-background-info);
+    border: 0.5px solid var(--color-border-info);
+    border-radius: var(--border-radius-md);
+    padding: 0.875rem 1rem;
+    margin: 0.75rem 0;
+    font-size: 13px;
+    color: var(--color-text-info);
+  }
+
+  .warning-box {
+    background: var(--color-background-warning);
+    border: 0.5px solid var(--color-border-warning);
+    border-radius: var(--border-radius-md);
+    padding: 0.875rem 1rem;
+    margin: 0.75rem 0;
+    font-size: 13px;
+    color: var(--color-text-warning);
+  }
+
+  .future-box {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+    margin: 0.75rem 0;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    opacity: 0.85;
+  }
+  .future-box strong { color: var(--color-text-tertiary); }
+
+  h3 { font-size: 15px; font-weight: 500; margin: 1rem 0 0.5rem; color: var(--color-text-primary); }
+  h4 { font-size: 13px; font-weight: 500; margin: 0.75rem 0 0.35rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.06em; }
+</style>
+
+<div class="blueprint">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="kicker">Confidential — Enterprise Architecture Blueprint</div>
+    <h1>Dynamic Risk Portfolio<br>Rebalancer</h1>
+    <div class="subtitle">Risk Migration Monitoring Platform · LendingClub MVP · Version 1.0</div>
+    <div class="bank-tags">
+      <span class="bank-tag">Morgan Stanley</span>
+      <span class="bank-tag">Goldman Sachs</span>
+      <span class="bank-tag">JPMorgan Chase</span>
+      <span class="bank-tag">UBS</span>
+      <span class="bank-tag">HSBC</span>
+      <span class="bank-tag">Citi</span>
+      <span class="bank-tag">Barclays</span>
+    </div>
+  </div>
+
+  <!-- S1: EXECUTIVE SUMMARY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Executive Summary</span>
+    </div>
+    <p>Enterprise lending portfolios carry a structural blind spot: risk assessment is concentrated at origination and rarely updated continuously thereafter. Once a loan is approved, the borrower's risk profile is typically monitored only through lagging indicators — missed payments, delinquency flags — by which point loss mitigation is already expensive or impossible.</p>
+    <p>The <strong>Dynamic Risk Portfolio Rebalancer (DRPR)</strong> addresses this gap. It is not a credit scoring system. It is a <em>risk migration and drift monitoring platform</em> that continuously computes the divergence between a loan's original underwriting risk estimate and its current inferred risk state, using repayment progression signals derived entirely from the LendingClub portfolio dataset.</p>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="ic-label">Core Problem</div>
+        <div class="ic-value" style="font-size:15px;line-height:1.3;">Post-approval risk blindness</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">Solution Type</div>
+        <div class="ic-value" style="font-size:15px;line-height:1.3;">Risk drift detection</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">Data Source</div>
+        <div class="ic-value" style="font-size:15px;line-height:1.3;">LendingClub loans</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">Target Users</div>
+        <div class="ic-value" style="font-size:15px;line-height:1.3;">Risk officers, CROs</div>
+      </div>
+    </div>
+    <div class="highlight-box">
+      The core equation: <strong>Underwriting Grade + Repayment Progression + Vintage Risk = Dynamic Risk Assessment.</strong> This is not transaction monitoring. It is longitudinal risk migration analysis.
+    </div>
+  </div>
+
+  <!-- S2: BUSINESS PROBLEM -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Business Problem</span>
+    </div>
+    <p>Traditional banking credit infrastructure operates as a one-shot pipeline: an application is received, underwriting assigns a risk grade, and the loan is approved or denied. Beyond approval, monitoring is reactive — triggered by delinquency events rather than by early detection of deteriorating borrower health.</p>
+    <h3>The Gap</h3>
+    <ul>
+      <li>A borrower graded B at origination (historical default rate: 13.39%) may have meaningfully deteriorated to what would be a D-equivalent risk level (30.38%) within 18 months.</li>
+      <li>Without continuous reassessment, the portfolio's true risk-weighted exposure is systematically understated.</li>
+      <li>Risk officers cannot distinguish between a loan that is performing according to underwriting expectations versus one that is drifting toward default silently.</li>
+      <li>Provisioning, capital allocation, and intervention triggers all rely on stale origination-era risk grades.</li>
+    </ul>
+    <h3>What DRPR Does Not Do</h3>
+    <p>DRPR does not replace underwriting. It does not score new applications. It operates entirely post-origination on an existing book of loans, monitoring the divergence between the underwritten PD and the current estimated PD.</p>
+  </div>
+
+  <!-- S3: SOLUTION OVERVIEW -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Solution Overview</span>
+    </div>
+    <p>DRPR is a four-layer analytical architecture built on top of the LendingClub loan dataset. Each layer contributes a distinct signal to the final dynamic risk assessment.</p>
+    <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px,1fr))">
+      <div class="info-card">
+        <div class="ic-label">Layer 1</div>
+        <div class="ic-value" style="font-size:14px;line-height:1.3;margin-bottom:4px;">Underwriting Anchor</div>
+        <div class="ic-sub">grade, sub_grade → origination PD</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">Layer 2</div>
+        <div class="ic-value" style="font-size:14px;line-height:1.3;margin-bottom:4px;">Repayment Progression</div>
+        <div class="ic-sub">Payment ratios, months since last payment</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">Layer 3</div>
+        <div class="ic-value" style="font-size:14px;line-height:1.3;margin-bottom:4px;">Vintage Risk</div>
+        <div class="ic-sub">issue_d cohort macro adjustments</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">Layer 4</div>
+        <div class="ic-value" style="font-size:14px;line-height:1.3;margin-bottom:4px;">Latent State HMM</div>
+        <div class="ic-sub">Hidden borrower states: Healthy → Default</div>
+      </div>
+    </div>
+    <p>These four layers converge in the <strong>Dynamic PD Engine</strong>, which computes PD(t) — a time-varying probability of default that is then compared against the origination PD to produce the <strong>Risk Drift Score</strong>. That score drives the <strong>Intervention Engine</strong>, which recommends risk-tiered actions.</p>
+  </div>
+
+  <!-- S4: END-TO-END ARCHITECTURE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">End-to-End Architecture</span>
+    </div>
+    <p>The end-to-end system flows from raw LendingClub data through progressive analytical enrichment layers, culminating in risk officer dashboards and automated intervention recommendations.</p>
+    <div class="ascii-block">DRPR — END-TO-END ARCHITECTURE FLOW
+═══════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────┐
+│                    DATA INGESTION LAYER                     │
+│                                                             │
+│  LendingClub CSV / PostgreSQL Loan Table                    │
+│  Columns: id, loan_amnt, term, int_rate, installment,       │
+│           grade, sub_grade, emp_length, home_ownership,     │
+│           annual_inc, issue_d, loan_status, purpose,        │
+│           addr_state, fico_range_low, fico_range_high,      │
+│           total_pymnt, total_rec_prncp, total_rec_int,      │
+│           last_pymnt_d                                      │
+└───────────────────┬─────────────────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────────────────────────┐
+│               FEATURE ENGINEERING LAYER                     │
+│                                                             │
+│  Repayment Ratio │ Interest Recovery │ Payment Efficiency   │
+│  Months Active   │ Vintage Cohort ID │ Grade PD Lookup      │
+└──────┬───────────┴──────────┬────────┴──────────────────────┘
+       │                      │
+       ▼                      ▼
+┌──────────────┐    ┌─────────────────────────────────────────┐
+│  UNDERWRITING│    │          DYNAMIC RISK LAYERS            │
+│  ANCHOR      │    │                                         │
+│              │    │  ┌──────────────┐  ┌─────────────────┐  │
+│  grade →     │    │  │  Repayment   │  │   Vintage Risk   │  │
+│  sub_grade → │    │  │  Progression │  │   Adjustment     │  │
+│  Orig PD     │    │  │  Module      │  │   Module         │  │
+└──────┬───────┘    │  └──────┬───────┘  └────────┬────────┘  │
+       │            │         │                    │           │
+       └────────────┤         └──────────┬─────────┘           │
+                    │                    │                     │
+                    └──────────┬─────────┘                     │
+                               │                               │
+                               ▼                               │
+                    ┌──────────────────────┐                   │
+                    │  LATENT STATE MODEL  │                   │
+                    │  (Hidden Markov)     │                   │
+                    │                     │                   │
+                    │  Healthy / Watchlist │                   │
+                    │  Stress / Critical   │                   │
+                    │  Default             │                   │
+                    └──────────┬───────────┘                   │
+                               │                               │
+                               ▼                               │
+                    ┌──────────────────────┐                   │
+                    │  DYNAMIC PD ENGINE   │                   │
+                    │                     │◄──────────────────┘
+                    │  PD(t) computation   │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │  RISK DRIFT ENGINE   │
+                    │                     │
+                    │  Drift = PD(t)       │
+                    │        − Orig PD     │
+                    └──────────┬───────────┘
+                               │
+                    ┌──────────┴──────────┐
+                    │                     │
+                    ▼                     ▼
+         ┌──────────────┐      ┌──────────────────┐
+         │  SHAP        │      │  INTERVENTION    │
+         │  EXPLAINER   │      │  ENGINE          │
+         │              │      │                  │
+         │  Why did PD  │      │  No Action →     │
+         │  change?     │      │  Collections     │
+         └──────────────┘      └────────┬─────────┘
+                                        │
+                                        ▼
+                             ┌──────────────────────┐
+                             │  RISK OFFICER        │
+                             │  DASHBOARD           │
+                             │  (Streamlit / API)   │
+                             └──────────────────────┘
+    </div>
+  </div>
+
+  <!-- S5: DATA ARCHITECTURE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <span class="section-title">Data Architecture</span>
+    </div>
+    <p>All MVP data flows originate exclusively from the LendingClub loan dataset. The following table maps each column to its functional role within DRPR.</p>
+    <table class="grade-table">
+      <thead>
+        <tr>
+          <th>Column</th>
+          <th>Role in DRPR</th>
+          <th>Layer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>grade</code>, <code>sub_grade</code></td><td>Origination PD anchor — primary risk calibration source</td><td>Underwriting</td></tr>
+        <tr><td><code>loan_amnt</code></td><td>Denominator for repayment ratio; portfolio exposure sizing</td><td>Repayment</td></tr>
+        <tr><td><code>total_rec_prncp</code></td><td>Numerator for repayment ratio and payment efficiency</td><td>Repayment</td></tr>
+        <tr><td><code>total_pymnt</code></td><td>Denominator for interest recovery and payment efficiency</td><td>Repayment</td></tr>
+        <tr><td><code>total_rec_int</code></td><td>Numerator for interest recovery ratio</td><td>Repayment</td></tr>
+        <tr><td><code>issue_d</code></td><td>Vintage cohort identification; months-active computation</td><td>Vintage</td></tr>
+        <tr><td><code>last_pymnt_d</code></td><td>Months since last payment; recency signal for latent state</td><td>Repayment / Latent</td></tr>
+        <tr><td><code>loan_status</code></td><td>Default ground truth (Charged Off = 1, Fully Paid = 0)</td><td>Target / Validation</td></tr>
+        <tr><td><code>int_rate</code></td><td>Risk-adjusted pricing signal; model feature</td><td>Underwriting</td></tr>
+        <tr><td><code>fico_range_low</code>, <code>fico_range_high</code></td><td>Origination credit quality; underwriting anchor feature</td><td>Underwriting</td></tr>
+        <tr><td><code>annual_inc</code>, <code>emp_length</code></td><td>Borrower capacity features for static PD model</td><td>Underwriting</td></tr>
+        <tr><td><code>term</code>, <code>installment</code></td><td>Scheduled repayment context; efficiency baseline</td><td>Repayment</td></tr>
+        <tr><td><code>purpose</code>, <code>addr_state</code></td><td>Segmentation features; geographic risk stratification</td><td>Segmentation</td></tr>
+        <tr><td><code>home_ownership</code></td><td>Collateral proxy; stability signal</td><td>Underwriting</td></tr>
+      </tbody>
+    </table>
+    <p>No external data sources are used in the MVP. All features are derived entirely from columns present in the LendingClub dataset.</p>
+  </div>
+
+  <!-- S6: UNDERWRITING ANCHOR -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <span class="section-title">Underwriting Anchor Framework</span>
+    </div>
+    <p>The underwriting anchor is the origination-era risk estimate that DRPR uses as a baseline against which current risk is measured. LendingClub assigns each loan a <code>grade</code> (A–G) and a finer <code>sub_grade</code> (A1–G5), which represent the platform's assessment of borrower credit risk at origination.</p>
+    <p>Empirical historical default rates by grade are treated as the ground truth origination PD:</p>
+    <table class="grade-table">
+      <thead>
+        <tr><th>Grade</th><th>Origination PD</th><th>Risk Level</th><th>Default Bar</th></tr>
+      </thead>
+      <tbody id="grade-rows"></tbody>
+    </table>
+    <p style="margin-top:0.5rem">Sub-grades (e.g., B1 through B5) allow finer interpolation within each grade band. The sub_grade therefore provides a more precise origination PD anchor than grade alone. This 35-point sub_grade scale becomes the starting risk coordinate for every loan in the portfolio.</p>
+    <div class="highlight-box">
+      The underwriting anchor is <strong>fixed at origination</strong>. It does not change. It is the reference point against which all subsequent risk drift is measured. The anchor is only as good as the original underwriting — a critical limitation discussed in Section 18.
+    </div>
+    <h3>Origination PD Construction</h3>
+    <p>For the MVP, origination PD is constructed as a lookup table mapping sub_grade → empirical default rate, interpolated linearly within each grade band. A logistic regression trained on origination-era features (grade, sub_grade, fico_range_low, fico_range_high, annual_inc, int_rate, dti, emp_length) serves as a secondary anchor to validate and refine these lookup values.</p>
+  </div>
+
+  <!-- S7: REPAYMENT PROGRESSION -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <span class="section-title">Repayment Progression Framework</span>
+    </div>
+    <p>Repayment progression is the primary dynamic signal available in the LendingClub dataset. As a loan ages, the cumulative repayment trajectory encodes meaningful information about the borrower's ability and willingness to service debt — the two core drivers of credit risk.</p>
+    <p>Four engineered metrics form the repayment signal vector:</p>
+
+    <div class="formula-block">
+      <div class="f-name">Repayment Ratio</div>
+      <div class="f-expr">total_rec_prncp / loan_amnt</div>
+      <div class="f-why">Measures what fraction of the original principal has been recovered. Low values relative to loan age indicate underpayment or payment shortfalls — a strong early-warning signal of stress.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="f-name">Interest Recovery Ratio</div>
+      <div class="f-expr">total_rec_int / total_pymnt</div>
+      <div class="f-why">Measures the proportion of total payments composed of interest rather than principal. Higher-than-expected interest share may indicate the borrower is paying minimum amounts only, reducing principal reduction rate and extending effective duration risk.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="f-name">Payment Efficiency</div>
+      <div class="f-expr">total_rec_prncp / total_pymnt</div>
+      <div class="f-why">The complement of interest recovery. High efficiency means principal is being retired aggressively, implying a borrower performing ahead of schedule. Low efficiency signals concern about debt service capacity.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="f-name">Months Since Last Payment</div>
+      <div class="f-expr">months_between(last_pymnt_d, reference_date)</div>
+      <div class="f-why">Payment recency is a powerful leading indicator. A borrower who made a payment 1 month ago has materially different risk from one whose last payment was 5 months ago, even if cumulative amounts are similar. This metric bridges repayment history to the latent state model.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="f-name">Months Active (loan age)</div>
+      <div class="f-expr">months_between(issue_d, reference_date)</div>
+      <div class="f-why">Normalizes all repayment metrics by loan age. A repayment ratio of 0.4 on a 12-month-old 36-month loan is on-track; the same ratio on a 30-month-old loan signals underpayment. All metrics must be interpreted in the context of expected amortization schedule.</div>
+    </div>
+
+    <h3>Expected vs Actual Repayment</h3>
+    <p>Each loan has a scheduled amortization profile computable from <code>loan_amnt</code>, <code>int_rate</code>, and <code>term</code>. The deviation between expected cumulative principal at month t and actual <code>total_rec_prncp</code> is the <strong>repayment deviation signal</strong> — arguably the most direct proxy for borrower financial health available without transaction-level data.</p>
+  </div>
+
+  <!-- S8: VINTAGE RISK -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <span class="section-title">Vintage Risk Framework</span>
+    </div>
+    <p>Not all loans of the same grade carry identical risk. A Grade B loan originated in 2014 — before the 2015–2016 LendingClub credit standard tightening — may have systematically different default characteristics than a Grade B loan from 2017, even if the borrower profiles appear similar. This is vintage risk: the macroeconomic and underwriting-standard environment embedded in a loan cohort at origination.</p>
+    <h3>Vintage Identification</h3>
+    <p>Vintages are defined using <code>issue_d</code>, grouped by year-quarter (e.g., 2014-Q1, 2015-Q3). Each vintage cohort accumulates a realized default rate as loans mature and resolve. This realized default rate becomes a vintage-specific adjustment factor applied to the origination PD.</p>
+    <h3>Vintage Adjustment Mechanics</h3>
+    <div class="formula-block">
+      <div class="f-name">Vintage Default Rate</div>
+      <div class="f-expr">vintage_PD = (charged_off_in_cohort) / (total_loans_in_cohort)</div>
+      <div class="f-why">Computed per issue_d cohort. As a cohort matures, this rate converges toward the true lifetime default rate of that vintage. Earlier (more mature) cohorts provide more reliable estimates.</div>
+    </div>
+    <div class="formula-block">
+      <div class="f-name">Vintage Adjustment Factor</div>
+      <div class="f-expr">vintage_adj = vintage_PD / expected_PD_for_grade_mix</div>
+      <div class="f-why">Normalizes the vintage PD by the grade-mix-weighted expected PD. A value >1 indicates the vintage underperformed expectations (adverse macro environment); <1 indicates outperformance.</div>
+    </div>
+    <p>Macro conditions that embed into vintages include: interest rate environments, unemployment cycles, housing market cycles, and platform-specific underwriting policy shifts. The 2014 and 2015 vintages, for instance, contain loans originated under looser credit standards than 2016–2017, resulting in systematically higher realized default rates controlling for grade.</p>
+    <div class="highlight-box">
+      Vintage risk is a <strong>portfolio-level correction</strong>. Individual loan PDs are multiplied by the vintage adjustment factor to account for cohort-level macroeconomic effects that were not fully captured at origination. This prevents systematic mispricing of risk in high-risk vintage books.
+    </div>
+  </div>
+
+  <!-- S9: LATENT STATE MODELING -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <span class="section-title">Latent State Modeling Framework</span>
+    </div>
+    <p>Borrower financial condition does not change instantaneously — it evolves through a sequence of states. A borrower typically transitions from a healthy condition through a watchlist phase, then into stress, and potentially to critical or default over a period of months. These transitions are not directly observed in the dataset. They must be inferred from the observable repayment signals.</p>
+    <p>This is the foundational motivation for a <strong>latent state model</strong>: a layer of hidden variables that bridge observable payment metrics and future default risk.</p>
+    <h3>Defined Latent States</h3>
+    <p>Five discrete hidden states are defined. These states do <em>not</em> exist in the dataset — they are an abstraction layer constructed by the model:</p>
+    <div style="margin:1rem 0">
+      <div class="state-row">
+        <div class="state-dot" style="background:var(--color-text-success)"></div>
+        <div class="state-name">Healthy</div>
+        <div class="state-action">Repayment on or ahead of schedule. High payment efficiency. Recent payment activity. Low risk drift. No intervention required.</div>
+        <div class="state-trigger">PD(t) ≈ Orig PD</div>
+      </div>
+      <div class="state-row">
+        <div class="state-dot" style="background:var(--color-text-info)"></div>
+        <div class="state-name">Watchlist</div>
+        <div class="state-action">Slight underpayment vs schedule. Payment efficiency declining. Monitoring flagged. Soft outreach recommended.</div>
+        <div class="state-trigger">Drift 0–10%</div>
+      </div>
+      <div class="state-row">
+        <div class="state-dot" style="background:var(--color-text-warning)"></div>
+        <div class="state-name">Stress</div>
+        <div class="state-action">Meaningful deviation from repayment schedule. Months since last payment increasing. Proactive intervention required.</div>
+        <div class="state-trigger">Drift 10–25%</div>
+      </div>
+      <div class="state-row">
+        <div class="state-dot" style="background:var(--color-text-danger)"></div>
+        <div class="state-name">Critical</div>
+        <div class="state-action">Severe underpayment. High payment gap. Collections escalation triggered. High PD(t).</div>
+        <div class="state-trigger">Drift >25%</div>
+      </div>
+      <div class="state-row">
+        <div class="state-dot" style="background:#1e1e1e; border:1px solid var(--color-border-secondary)"></div>
+        <div class="state-name">Default</div>
+        <div class="state-action">Charged Off event observed. Ground truth default. Feeds model retraining pipeline.</div>
+        <div class="state-trigger">loan_status = CO</div>
+      </div>
+    </div>
+    <h3>Hidden Markov Model (HMM) Architecture</h3>
+    <p>A Hidden Markov Model with 5 hidden states is trained on the observable emission sequence: {repayment_ratio, payment_efficiency, months_since_last_payment, repayment_deviation}. The HMM learns:</p>
+    <ul>
+      <li><strong>Transition probabilities</strong> P(state t+1 | state t): the probability of moving between states in a given period</li>
+      <li><strong>Emission probabilities</strong> P(observations | state): the distribution of observable signals given each hidden state</li>
+      <li><strong>Initial state probabilities</strong>: influenced by underwriting grade and sub_grade</li>
+    </ul>
+    <p>The Viterbi algorithm is used to decode the most probable state sequence for each loan. Forward-backward inference provides the posterior state probability distribution at any point in time, which feeds directly into PD(t) computation.</p>
+    <div class="highlight-box">
+      HMM implementation uses <strong>hmmlearn</strong> (GaussianHMM for continuous emissions). The model is trained per-grade segment to account for the fact that healthy Gaussian state emissions differ materially between a Grade A and Grade E borrower.
+    </div>
+  </div>
+
+  <!-- S10: DYNAMIC PD ENGINE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <span class="section-title">Dynamic PD Engine</span>
+    </div>
+    <p>The Dynamic PD Engine synthesizes all upstream layers into a single time-varying probability of default, PD(t), computed at any observation point during the loan lifetime.</p>
+    <h3>Origination PD</h3>
+    <p>Origination PD is fixed at loan issuance. It is derived from the <code>grade</code> and <code>sub_grade</code> lookup table of empirical historical default rates, optionally refined by a static logistic regression trained on origination-era features. This is the anchor value — it does not change.</p>
+    <h3>Current PD(t) Computation</h3>
+    <p>PD(t) is computed as a weighted combination:</p>
+    <div class="formula-block">
+      <div class="f-name">PD(t) — Dynamic Probability of Default</div>
+      <div class="f-expr">PD(t) = f(Orig_PD, Repayment_Vector, Latent_State, Vintage_Adj)</div>
+      <div class="f-why">
+        In practice: the XGBoost / LightGBM Phase 2 model takes the full feature vector — origination PD, repayment ratio, payment efficiency, months since last payment, HMM posterior state probabilities, vintage adjustment factor — and outputs PD(t) as a calibrated probability.
+      </div>
+    </div>
+    <h3>Model Phases</h3>
+    <p><strong>Phase 1 — Static PD Model:</strong> Logistic regression, XGBoost, and LightGBM trained on origination features only (grade, sub_grade, fico, annual_inc, int_rate, purpose, term) with target = default. This establishes the origination PD baseline and benchmarks the dynamic model's incremental value.</p>
+    <p><strong>Phase 2 — Latent State Integration:</strong> The HMM posterior state probabilities (P(Healthy), P(Watchlist), P(Stress), P(Critical)) are added as features. The dynamic model is trained on the full feature set including repayment progression metrics. This produces PD(t).</p>
+    <p><strong>Phase 3 — Vintage Calibration:</strong> PD(t) is multiplied by the vintage adjustment factor to produce the final calibrated current PD.</p>
+
+    <!-- Interactive PD demo -->
+    <div class="drift-interactive">
+      <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:1rem">Interactive: Illustrative PD Drift Demo — adjust repayment ratio to see how PD(t) evolves</p>
+      <div class="slider-row">
+        <label>Repayment Ratio</label>
+        <input type="range" min="0" max="100" value="45" id="rr-slider" oninput="updatePD()">
+        <span id="rr-val">0.45</span>
+      </div>
+      <div class="slider-row">
+        <label>Months Since Last Payment</label>
+        <input type="range" min="0" max="12" value="2" id="ms-slider" oninput="updatePD()">
+        <span id="ms-val">2</span>
+      </div>
+      <div class="slider-row">
+        <label>Grade (A=1, G=7)</label>
+        <input type="range" min="1" max="7" value="2" id="gr-slider" oninput="updatePD()" step="1">
+        <span id="gr-val">B</span>
+      </div>
+      <div class="pd-demo">
+        <div class="pd-row">
+          <span class="pd-label">Origination PD</span>
+          <span class="pd-value" id="orig-pd-disp" style="color:var(--color-text-success)">13.39%</span>
+        </div>
+        <div class="pd-row">
+          <span class="pd-label">Current PD(t)</span>
+          <span class="pd-value" id="curr-pd-disp" style="color:var(--color-text-primary)">—</span>
+        </div>
+        <div class="drift-box" id="drift-box">
+          <span class="drift-label">Risk Drift Score</span>
+          <span class="drift-value" id="drift-disp">—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S11: RISK DRIFT FRAMEWORK -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <span class="section-title">Risk Drift Framework</span>
+    </div>
+    <p>The Risk Drift Score is the central output of DRPR. It is the signed difference between the current PD and the origination PD:</p>
+    <div class="formula-block">
+      <div class="f-name">Risk Drift Score</div>
+      <div class="f-expr">Risk Drift = PD(t) − Origination PD</div>
+      <div class="f-why">
+        Positive drift = borrower has deteriorated relative to underwriting expectations.
+        Negative drift = borrower has improved (favorable early repayment).
+        Magnitude encodes severity; sign encodes direction.
+      </div>
+    </div>
+    <h3>Worked Example</h3>
+    <div class="pd-demo">
+      <div class="pd-row">
+        <span class="pd-label">Borrower: Grade B, 36-month loan, issued 2015-Q2</span>
+        <span></span>
+      </div>
+      <div class="pd-row">
+        <span class="pd-label">Origination PD (Grade B historical)</span>
+        <span class="pd-value" style="color:var(--color-text-success)">13.39%</span>
+      </div>
+      <div class="pd-row">
+        <span class="pd-label">Repayment Ratio at month 24 (expected: 0.65, actual: 0.31)</span>
+        <span class="pd-label">Below schedule</span>
+      </div>
+      <div class="pd-row">
+        <span class="pd-label">Months since last payment</span>
+        <span class="pd-label">4 months</span>
+      </div>
+      <div class="pd-row">
+        <span class="pd-label">HMM latent state</span>
+        <span class="pd-label">P(Critical) = 0.72</span>
+      </div>
+      <div class="pd-row">
+        <span class="pd-label">Current PD(t)</span>
+        <span class="pd-value" style="color:var(--color-text-danger)">38.22%</span>
+      </div>
+      <div class="drift-box">
+        <span class="drift-label">Risk Drift: Collections Escalation Triggered</span>
+        <span class="drift-value">+24.83%</span>
+      </div>
+    </div>
+    <h3>Why Risk Drift Is Useful for Risk Officers</h3>
+    <ul>
+      <li><strong>Grade-relative framing:</strong> A PD of 25% means different things for a Grade A loan versus a Grade E loan. Risk Drift normalizes by the origination expectation, making cross-portfolio comparison meaningful.</li>
+      <li><strong>Early warning signal:</strong> Drift begins accumulating before a missed payment event. The repayment progression and latent state transitions provide leading rather than lagging indicators.</li>
+      <li><strong>Portfolio heat maps:</strong> Risk officers can visualize entire loan books as drift distributions, identifying segments, vintages, or origination cohorts experiencing systematic deterioration.</li>
+      <li><strong>Provisioning support:</strong> Loans with high positive drift require higher expected credit loss provisions. DRPR provides the quantitative basis for dynamic provisioning adjustments.</li>
+      <li><strong>Regulatory evidence:</strong> Under IFRS 9 and CECL frameworks, banks must demonstrate that their provisioning reflects current and forecast credit conditions. Risk Drift scores provide auditable, model-driven evidence of this assessment.</li>
+    </ul>
+  </div>
+
+  <!-- S12: EXPLAINABILITY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <span class="section-title">Explainability Layer</span>
+    </div>
+    <p>Any risk model deployed in an enterprise banking context must be explainable — to risk officers, to model validation teams, to regulators, and to internal audit. Black-box PD outputs without attribution are not acceptable in regulated financial services. DRPR uses SHAP (SHapley Additive exPlanations) throughout.</p>
+    <h3>SHAP Application in DRPR</h3>
+    <ul>
+      <li><strong>Feature-level attribution:</strong> For each loan, SHAP values decompose PD(t) into the individual contribution of each input feature. A risk officer can see: "PD increased by 12% because months_since_last_payment increased by 3, and repayment_ratio fell below the grade-B expectation trajectory."</li>
+      <li><strong>Drift attribution:</strong> SHAP difference values between PD at t₁ and PD at t₂ identify which features drove the change in risk between two observation points.</li>
+      <li><strong>Portfolio-level aggregation:</strong> Mean absolute SHAP values across the portfolio identify the dominant risk drivers at any point in time — useful for macro risk reporting.</li>
+      <li><strong>Watchlist explainability:</strong> Every borrower placed on the watchlist receives a top-3 SHAP driver explanation, visible on the risk officer dashboard.</li>
+    </ul>
+    <h3>Regulatory Compliance Alignment</h3>
+    <p>SHAP explainability supports compliance with: SR 11-7 (OCC/Federal Reserve model risk management guidance), IFRS 9 significant increase in credit risk (SICR) evidence requirements, CECL forward-looking loss estimation documentation, and GDPR/FCRA adverse action notice requirements (where applicable to consumer portfolios).</p>
+    <div class="highlight-box">
+      <strong>Model governance requirement:</strong> All models (Phase 1 static, Phase 2 dynamic, HMM latent state) must be registered in the model inventory, assigned model owners, and subject to annual independent validation. SHAP outputs form part of the model validation evidence package.
+    </div>
+  </div>
+
+  <!-- S13: INTERVENTION ENGINE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">13</span>
+      <span class="section-title">Intervention Engine</span>
+    </div>
+    <p>The Intervention Engine translates latent state and risk drift scores into tiered action recommendations. It operates as a rule-based system applied over the dynamic risk outputs.</p>
+    <div style="margin:1rem 0">
+      <div class="state-row">
+        <div class="state-dot" style="background:var(--color-text-success)"></div>
+        <div class="state-name">Healthy</div>
+        <div class="state-action"><strong>No Action.</strong> Loan performing within underwriting expectations. Drift ≤ 0. Continue standard monitoring cadence.</div>
+        <div class="state-trigger">Drift ≤ 0%</div>
+      </div>
+      <div class="state-row">
+        <div class="state-dot" style="background:var(--color-text-info)"></div>
+        <div class="state-name">Watchlist</div>
+        <div class="state-action"><strong>Soft Reminder.</strong> Automated email / SMS reminder about upcoming payment. No human escalation. Log to watchlist queue. Review next cycle.</div>
+        <div class="state-trigger">Drift 0–10%</div>
+      </div>
+      <div class="state-row">
+        <div class="state-dot" style="background:var(--color-text-warning)"></div>
+        <div class="state-name">Stress</div>
+        <div class="state-action"><strong>Proactive Intervention.</strong> Relationship manager outreach. Hardship plan assessment. Potential restructuring options presented. SHAP report attached to case file.</div>
+        <div class="state-trigger">Drift 10–25%</div>
+      </div>
+      <div class="state-row">
+        <div class="state-dot" style="background:var(--color-text-danger)"></div>
+        <div class="state-name">Critical</div>
+        <div class="state-action"><strong>Collections Escalation.</strong> Transfer to collections queue. Legal review initiated. Collateral assessment (if secured). Provisioning flag raised to finance team.</div>
+        <div class="state-trigger">Drift >25%</div>
+      </div>
+    </div>
+    <h3>How Recommendations Are Generated</h3>
+    <p>The intervention recommendation is a deterministic function of: (1) current latent state (HMM posterior argmax), (2) risk drift score, and (3) delta drift — the rate of change of drift over the past 3 observation periods. A borrower drifting rapidly from Watchlist toward Stress triggers an accelerated escalation path even before crossing the Stress threshold.</p>
+  </div>
+
+  <!-- S14: FEEDBACK LOOP -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">14</span>
+      <span class="section-title">Feedback Loop</span>
+    </div>
+    <p>The system improves over time through a structured feedback loop that connects model predictions to real-world intervention outcomes and feeds results back into the training pipeline.</p>
+    <div class="ascii-block">FEEDBACK LOOP ARCHITECTURE
+════════════════════════════
+
+  ┌─────────────────────────────┐
+  │  DRPR PREDICTION ENGINE     │
+  │  PD(t) + Latent State       │
+  └──────────────┬──────────────┘
+                 │  Risk Drift Score +
+                 │  Intervention Recommendation
+                 ▼
+  ┌─────────────────────────────┐
+  │  INTERVENTION ENGINE        │
+  │  Action dispatched          │
+  └──────────────┬──────────────┘
+                 │  Reminder / Outreach /
+                 │  Collections Escalation
+                 ▼
+  ┌─────────────────────────────┐
+  │  OUTCOME OBSERVATION        │
+  │  Did borrower pay? Default? │
+  │  Was intervention effective?│
+  └──────────────┬──────────────┘
+                 │  Labeled outcome pairs
+                 │  (prediction, action, result)
+                 ▼
+  ┌─────────────────────────────┐
+  │  OUTCOME DATABASE           │
+  │  PostgreSQL outcome store   │
+  │  prediction_id, action,     │
+  │  actual_outcome, lag_days   │
+  └──────────────┬──────────────┘
+                 │
+                 ▼
+  ┌─────────────────────────────┐
+  │  RETRAINING PIPELINE        │
+  │  Monthly / quarterly        │
+  │  XGBoost / LightGBM retrain │
+  │  HMM re-estimation          │
+  │  Vintage table refresh      │
+  └──────────────┬──────────────┘
+                 │
+                 ▼
+  ┌─────────────────────────────┐
+  │  MODEL VALIDATION GATE      │
+  │  AUC / KS / Brier score     │
+  │  Champion vs challenger     │
+  │  SR 11-7 documentation      │
+  └──────────────┬──────────────┘
+                 │  Validated model deployed
+                 └──────► DRPR PREDICTION ENGINE
+    </div>
+    <h3>Key Feedback Considerations</h3>
+    <ul>
+      <li><strong>Intervention effect confounding:</strong> Borrowers who received interventions are not a random sample. The feedback loop must account for selection bias — borrowers who were contacted may have different outcomes than similar borrowers who were not, independent of the intervention itself.</li>
+      <li><strong>Data vintage lag:</strong> Outcome data (whether an intervention prevented default) may lag 6–12 months. Retraining must account for incomplete follow-up periods in recent cohorts.</li>
+      <li><strong>Champion/Challenger framework:</strong> New model versions are deployed as challengers against the production champion, with A/B assignment and statistical monitoring before promotion.</li>
+    </ul>
+  </div>
+
+  <!-- S15: TECHNOLOGY STACK -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">15</span>
+      <span class="section-title">Technology Stack</span>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <h4>MVP Stack</h4>
+        <span class="tech-pill">Python 3.11</span>
+        <span class="tech-pill">Pandas</span>
+        <span class="tech-pill">NumPy</span>
+        <span class="tech-pill">PostgreSQL</span>
+        <span class="tech-pill">XGBoost</span>
+        <span class="tech-pill">LightGBM</span>
+        <span class="tech-pill">scikit-learn</span>
+        <span class="tech-pill">SHAP</span>
+        <span class="tech-pill">hmmlearn</span>
+        <span class="tech-pill">Streamlit</span>
+        <span class="tech-pill">FastAPI</span>
+        <span class="tech-pill">SQLAlchemy</span>
+      </div>
+      <div class="tech-card">
+        <h4>Enterprise Extension</h4>
+        <span class="tech-pill">Apache Kafka</span>
+        <span class="tech-pill">Spark Streaming</span>
+        <span class="tech-pill">Docker</span>
+        <span class="tech-pill">Kubernetes</span>
+        <span class="tech-pill">AWS SageMaker</span>
+        <span class="tech-pill">Azure ML</span>
+        <span class="tech-pill">MLflow</span>
+        <span class="tech-pill">Airflow</span>
+        <span class="tech-pill">Great Expectations</span>
+        <span class="tech-pill">Grafana</span>
+        <span class="tech-pill">Prometheus</span>
+      </div>
+    </div>
+    <h3>Component Rationale</h3>
+    <ul>
+      <li><strong>hmmlearn:</strong> Python HMM library supporting Gaussian, MultinomialHMM, and GMMHMM models. Implements Baum-Welch training and Viterbi decoding. The GaussianHMM variant suits the continuous repayment signal emissions in DRPR.</li>
+      <li><strong>XGBoost / LightGBM:</strong> Industry-standard gradient boosting for tabular credit data. Both support calibrated probability outputs via Platt scaling and isotonic regression post-processors.</li>
+      <li><strong>SHAP:</strong> TreeExplainer for tree-based models provides exact Shapley values efficiently. KernelExplainer as fallback for the HMM layer.</li>
+      <li><strong>FastAPI:</strong> Async REST API layer serving PD(t) and drift score endpoints. Deployed as Docker container with Kubernetes horizontal pod autoscaling in enterprise version.</li>
+      <li><strong>Streamlit:</strong> Rapid risk officer dashboard deployment. Loan-level drill-down, portfolio heat maps, SHAP waterfall charts, vintage risk views.</li>
+    </ul>
+  </div>
+
+  <!-- S16: DEPLOYMENT ARCHITECTURE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">16</span>
+      <span class="section-title">Deployment Architecture</span>
+    </div>
+    <div class="ascii-block">DRPR MVP DEPLOYMENT ARCHITECTURE
+══════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────┐
+│                   DATA LAYER                        │
+│                                                     │
+│  PostgreSQL: loans table, features table,           │
+│              outcomes table, model_registry         │
+└────────────────────┬────────────────────────────────┘
+                     │  SQLAlchemy ORM
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│              BATCH SCORING PIPELINE                 │
+│              (Python + Airflow DAG)                 │
+│                                                     │
+│  Daily: feature engineering → HMM inference         │
+│         → PD(t) → drift scores → outcome store      │
+└───────────┬─────────────────────┬───────────────────┘
+            │                     │
+            ▼                     ▼
+┌─────────────────┐    ┌─────────────────────────────┐
+│  FastAPI        │    │  Streamlit Dashboard         │
+│  REST API       │    │                             │
+│                 │    │  Portfolio heat map          │
+│  GET /pd/{id}   │    │  Loan drill-down            │
+│  GET /drift/{id}│    │  SHAP waterfall             │
+│  GET /state/{id}│    │  Vintage risk view          │
+│  POST /retrain  │    │  Intervention queue         │
+└─────────────────┘    └─────────────────────────────┘
+
+ENTERPRISE EXTENSION:
+
+  Kafka Topic: loan_events → Spark Streaming consumer
+  → Real-time feature update → Model serving cluster
+  → Kubernetes HPA → Multi-region deployment
+    </div>
+  </div>
+
+  <!-- S17: FUTURE EXPANSION -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">17</span>
+      <span class="section-title">Future Expansion</span>
+    </div>
+    <div class="warning-box">
+      <strong>FUTURE WORK ONLY.</strong> The following capabilities are not part of the MVP. They are described here to illustrate how the DRPR architecture could be extended once real-time data pipelines and external data sources become available. None of these should be conflated with the LendingClub-based MVP described above.
+    </div>
+    <div class="future-box">
+      <strong>Real-time transaction streams (Open Banking / Account Aggregator):</strong> With access to checking account transaction streams (salary deposits, utility payments, discretionary spending), the repayment progression layer could be supplemented with direct income and expenditure signals. Sudden disappearance of salary deposits, spike in minimum balance periods, or increased overdraft frequency would become leading indicators of borrower stress — months before repayment behavior degrades.
+    </div>
+    <div class="future-box">
+      <strong>Behavioral telemetry:</strong> Login frequency, mobile app engagement patterns, and digital banking behavioral signals correlate with financial stress in borrower populations. Integration of behavioral telemetry via a customer data platform (CDP) could enrich the HMM emission model significantly.
+    </div>
+    <div class="future-box">
+      <strong>Alternative data sources:</strong> Bureau refresh data (credit score updates), property registry data for HELOC portfolios, employment verification via government databases, and social mobility indices could all improve vintage risk adjustment accuracy and latent state inference.
+    </div>
+    <div class="future-box">
+      <strong>Real-time Kafka streaming architecture:</strong> In an enterprise deployment with continuous transaction data, DRPR would consume a Kafka topic of financial events, maintain a stateful feature store (Feast or Tecton), and serve PD(t) with sub-second latency via a model serving cluster. The HMM transition probabilities would be updated incrementally via online learning.
+    </div>
+  </div>
+
+  <!-- S18: RISKS AND LIMITATIONS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">18</span>
+      <span class="section-title">Risks and Limitations</span>
+    </div>
+    <ul>
+      <li><strong>Anchor dependency:</strong> DRPR's risk drift framework is only as meaningful as the origination underwriting quality. If the origination PD anchor is systematically miscalibrated (e.g., grade inflation in a particular vintage), drift scores will be distorted. This is a known limitation of all anchor-relative monitoring systems.</li>
+      <li><strong>Survivorship bias:</strong> The LendingClub dataset contains only loans that were originated. Rejected applications are not visible, creating selection bias in any model trained on this data. The feature distributions of originated loans are systematically different from the full applicant population.</li>
+      <li><strong>LendingClub platform specificity:</strong> LendingClub's underwriting methodology, borrower base, and origination standards are specific to the US peer-to-peer consumer lending market. Direct transfer of model coefficients to a bank's mortgage, auto, or commercial lending portfolio would require significant recalibration.</li>
+      <li><strong>No transaction-level data:</strong> The MVP cannot observe actual cash flows, income continuity, or spending behavior. All borrower health inference is based on cumulative repayment aggregates, which are lagging indicators relative to transaction-level data.</li>
+      <li><strong>HMM stationarity assumption:</strong> The Hidden Markov Model assumes stationary transition probabilities. In practice, transition dynamics change during economic recessions, interest rate cycles, and regulatory shifts. Periodic re-estimation is required.</li>
+      <li><strong>Intervention causality:</strong> Risk drift does not identify the cause of borrower distress — only its magnitude. Intervention design should not assume that contacting a borrower will necessarily address the underlying stress, which may be job loss, medical expense, or macroeconomic deterioration outside the borrower's control.</li>
+      <li><strong>Regulatory risk (fair lending):</strong> Any model that uses <code>addr_state</code>, <code>purpose</code>, or correlated features could introduce disparate impact on protected classes. Rigorous fair lending testing (adverse impact ratio analysis, ECOA/Regulation B compliance) is mandatory before enterprise deployment.</li>
+    </ul>
+  </div>
+
+  <!-- S19: ENTERPRISE VALUE PROPOSITION -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">19</span>
+      <span class="section-title">Enterprise Banking Value Proposition</span>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="ic-label">Loss Prevention</div>
+        <div class="ic-value" style="font-size:14px;line-height:1.3;margin-bottom:4px;">Earlier intervention on deteriorating credits</div>
+        <div class="ic-sub">Moving from lagging to leading indicators can shift intervention timing 60–120 days earlier</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">Provisioning</div>
+        <div class="ic-value" style="font-size:14px;line-height:1.3;margin-bottom:4px;">IFRS 9 / CECL alignment</div>
+        <div class="ic-sub">Dynamic PD(t) provides the forward-looking ECL estimate required by current accounting standards</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">Portfolio Insight</div>
+        <div class="ic-value" style="font-size:14px;line-height:1.3;margin-bottom:4px;">Risk concentration visibility</div>
+        <div class="ic-sub">Aggregate drift scores identify vintage, segment, or origination channel deterioration before delinquency metrics</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">Regulatory</div>
+        <div class="ic-value" style="font-size:14px;line-height:1.3;margin-bottom:4px;">Model governance ready</div>
+        <div class="ic-sub">SHAP explainability, SR 11-7 documentation, champion/challenger framework all built in</div>
+      </div>
+    </div>
+    <p>For tier-1 banks operating loan books in the tens of billions, even a 50 basis point improvement in charge-off rates through earlier intervention represents nine-figure P&L impact. The DRPR architecture is designed to be the infrastructure layer on which this improvement is built — incrementally, measurably, and with full model governance accountability.</p>
+  </div>
+
+  <!-- S20: ASCII DIAGRAM -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">20</span>
+      <span class="section-title">Full ASCII Architecture Diagram</span>
+    </div>
+    <div class="ascii-block">
+DYNAMIC RISK PORTFOLIO REBALANCER — FULL SYSTEM ARCHITECTURE
+═════════════════════════════════════════════════════════════════════════
+
+DATA INPUTS (MVP: LendingClub only)
+────────────────────────────────────────────────────────────────────────
+ id  loan_amnt  term  int_rate  installment  grade  sub_grade  emp_length
+ home_ownership  annual_inc  issue_d  loan_status  purpose  addr_state
+ fico_range_low  fico_range_high  total_pymnt  total_rec_prncp
+ total_rec_int  last_pymnt_d
+
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                    FEATURE ENGINEERING (Python / Pandas)            │
+│                                                                     │
+│  repayment_ratio = total_rec_prncp / loan_amnt                      │
+│  interest_recovery = total_rec_int / total_pymnt                    │
+│  payment_efficiency = total_rec_prncp / total_pymnt                 │
+│  months_since_payment = diff(last_pymnt_d, reference_date)          │
+│  months_active = diff(issue_d, reference_date)                      │
+│  expected_prncp = amortization_schedule(loan_amnt, int_rate, term)  │
+│  repayment_deviation = expected_prncp(t) - total_rec_prncp          │
+│  vintage_cohort = year_quarter(issue_d)                             │
+└──────────────────────────────┬──────────────────────────────────────┘
+                               │
+           ┌───────────────────┼─────────────────────┐
+           │                   │                     │
+           ▼                   ▼                     ▼
+┌──────────────────┐  ┌─────────────────┐  ┌────────────────────┐
+│  UNDERWRITING    │  │  REPAYMENT      │  │  VINTAGE RISK      │
+│  ANCHOR          │  │  PROGRESSION    │  │  LAYER             │
+│                  │  │                 │  │                    │
+│  grade →         │  │  repay_ratio    │  │  issue_d cohort    │
+│  sub_grade →     │  │  int_recovery   │  │  vintage_PD        │
+│  orig_PD lookup  │  │  pay_efficiency │  │  vintage_adj_factor│
+│                  │  │  months_since   │  │                    │
+│  A:  6.04%       │  │  repay_deviation│  │  macro_env signal  │
+│  B: 13.39%       │  └────────┬────────┘  └──────────┬─────────┘
+│  C: 22.44%       │           │                      │
+│  D: 30.38%       │           └──────────┬───────────┘
+│  E: 38.48%       │                      │
+│  F: 45.20%       │                      ▼
+│  G: 49.93%       │         ┌───────────────────────────┐
+└──────────┬───────┘         │   LATENT STATE MODEL      │
+           │                 │   (hmmlearn GaussianHMM)   │
+           │                 │                           │
+           │                 │  Hidden States:           │
+           │                 │  ● Healthy                │
+           │                 │  ● Watchlist              │
+           │                 │  ● Stress                 │
+           │                 │  ● Critical               │
+           │                 │  ● Default                │
+           │                 │                           │
+           │                 │  Outputs:                 │
+           │                 │  P(state_k | obs_1..t)    │
+           │                 │  via Viterbi / fwd-bwd    │
+           └────────┬────────┴─────────────┬─────────────┘
+                    │                      │
+                    ▼                      │
+┌───────────────────────────────────────────────────────────────────┐
+│                    DYNAMIC PD ENGINE                              │
+│                    (XGBoost / LightGBM — Phase 2)                 │
+│                                                                   │
+│  Inputs: orig_PD, repayment_vector, HMM_posteriors,               │
+│          vintage_adj_factor, loan_age, grade, fico                │
+│                                                                   │
+│  Output: PD(t) — calibrated, time-varying probability of default  │
+└─────────────────────────────┬─────────────────────────────────────┘
+                              │
+                              ▼
+┌───────────────────────────────────────────────────────────────────┐
+│                    RISK DRIFT ENGINE                              │
+│                                                                   │
+│  Risk Drift Score = PD(t) - Origination PD                        │
+│                                                                   │
+│  Drift < 0         : Healthy / improving                          │
+│  0 ≤ Drift < 0.10  : Watchlist                                    │
+│  0.10 ≤ Drift < 0.25: Stress                                      │
+│  Drift ≥ 0.25      : Critical                                     │
+└──────────────────┬───────────────────────┬────────────────────────┘
+                   │                       │
+                   ▼                       ▼
+┌─────────────────────────┐   ┌────────────────────────────────────┐
+│  SHAP EXPLAINABILITY    │   │  INTERVENTION ENGINE               │
+│  (TreeExplainer)        │   │                                    │
+│                         │   │  Healthy   → No Action             │
+│  Per-loan feature       │   │  Watchlist → Automated reminder    │
+│  attribution            │   │  Stress    → RM outreach           │
+│                         │   │  Critical  → Collections escalation│
+│  Drift attribution      │   │                                    │
+│  Portfolio SHAP summary │   │  Triggers include: delta_drift      │
+└─────────────────────────┘   │  rate-of-change acceleration       │
+                              └────────────────────────────────────┘
+                                           │
+                                           ▼
+┌───────────────────────────────────────────────────────────────────┐
+│                 RISK OFFICER DASHBOARD (Streamlit)                │
+│                                                                   │
+│  Portfolio heat map  │  Loan drill-down  │  Vintage risk view     │
+│  SHAP waterfall      │  Drift histogram  │  Intervention queue    │
+│  State distribution  │  PD(t) time series│  Cohort comparison     │
+└───────────────────────────────────────────────────────────────────┘
+                                           │
+                              ┌────────────▼────────────┐
+                              │   FEEDBACK LOOP         │
+                              │   Outcome tracking →    │
+                              │   Monthly retraining →  │
+                              │   Champion/Challenger   │
+                              └─────────────────────────┘
+
+═════════════════════════════════════════════════════════════════════
+MVP STACK: Python · Pandas · NumPy · PostgreSQL · XGBoost · LightGBM
+           SHAP · hmmlearn · FastAPI · Streamlit · SQLAlchemy
+ENTERPRISE: Kafka · Spark · Docker · Kubernetes · AWS/Azure · MLflow
+═════════════════════════════════════════════════════════════════════
+    </div>
+  </div>
+
+</div>
+
+<script>
+const gradePDs = [0, 0.0604, 0.1339, 0.2244, 0.3038, 0.3848, 0.4520, 0.4993];
+const gradeNames = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G'];
+const gradeColors = ['', '#166534', '#1a4a8a', '#0e7490', '#92400e', '#991b1b', '#7c1a1a', '#4a0000'];
+
+// Grade table
+const rows = document.getElementById('grade-rows');
+const gradeData = [
+  {g:'A', pd:6.04, col:'#166534'},
+  {g:'B', pd:13.39, col:'#1a4a8a'},
+  {g:'C', pd:22.44, col:'#0e7490'},
+  {g:'D', pd:30.38, col:'#92400e'},
+  {g:'E', pd:38.48, col:'#b45309'},
+  {g:'F', pd:45.20, col:'#991b1b'},
+  {g:'G', pd:49.93, col:'#7c2d12'},
+];
+gradeData.forEach(d => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><span class="grade-badge" style="background:${d.col}20;color:${d.col};border:1px solid ${d.col}40">${d.g}</span></td>
+    <td style="font-weight:500;color:${d.col}">${d.pd.toFixed(2)}%</td>
+    <td>${d.g === 'A' ? 'Prime' : d.g <= 'B' ? 'Near-prime' : d.g <= 'D' ? 'Subprime' : 'High risk'}</td>
+    <td style="min-width:120px"><div class="risk-bar-wrap"><div class="risk-bar" style="width:${(d.pd/50*100).toFixed(1)}%;background:${d.col}"></div></div></td>`;
+  rows.appendChild(tr);
+});
+
+// Interactive PD demo
+function updatePD() {
+  const rr = parseInt(document.getElementById('rr-slider').value) / 100;
+  const ms = parseInt(document.getElementById('ms-slider').value);
+  const gr = parseInt(document.getElementById('gr-slider').value);
+
+  document.getElementById('rr-val').textContent = rr.toFixed(2);
+  document.getElementById('ms-val').textContent = ms;
+  document.getElementById('gr-val').textContent = gradeNames[gr];
+
+  const origPD = gradePDs[gr];
+  document.getElementById('orig-pd-disp').textContent = (origPD * 100).toFixed(2) + '%';
+
+  // Simulate dynamic PD: low repayment + high months since payment = higher PD
+  const stressFromRR = Math.max(0, (0.65 - rr)) * 0.8;
+  const stressFromMS = Math.max(0, ms - 1) * 0.025;
+  const currPD = Math.min(0.98, origPD + stressFromRR + stressFromMS);
+  const drift = currPD - origPD;
+
+  document.getElementById('curr-pd-disp').textContent = (currPD * 100).toFixed(2) + '%';
+  document.getElementById('drift-disp').textContent = (drift >= 0 ? '+' : '') + (drift * 100).toFixed(2) + '%';
+
+  const driftBox = document.getElementById('drift-box');
+  const driftLabel = driftBox.querySelector('.drift-label');
+  if (drift <= 0) {
+    driftBox.style.background = 'var(--color-background-success)';
+    driftBox.style.borderColor = 'var(--color-border-success)';
+    driftBox.querySelector('.drift-value').style.color = 'var(--color-text-success)';
+    driftLabel.style.color = 'var(--color-text-success)';
+    driftLabel.textContent = 'State: Healthy — No Action';
+  } else if (drift < 0.10) {
+    driftBox.style.background = 'var(--color-background-info)';
+    driftBox.style.borderColor = 'var(--color-border-info)';
+    driftBox.querySelector('.drift-value').style.color = 'var(--color-text-info)';
+    driftLabel.style.color = 'var(--color-text-info)';
+    driftLabel.textContent = 'State: Watchlist — Soft Reminder';
+  } else if (drift < 0.25) {
+    driftBox.style.background = 'var(--color-background-warning)';
+    driftBox.style.borderColor = 'var(--color-border-warning)';
+    driftBox.querySelector('.drift-value').style.color = 'var(--color-text-warning)';
+    driftLabel.style.color = 'var(--color-text-warning)';
+    driftLabel.textContent = 'State: Stress — Proactive Intervention';
+  } else {
+    driftBox.style.background = 'var(--color-background-danger)';
+    driftBox.style.borderColor = 'var(--color-border-danger)';
+    driftBox.querySelector('.drift-value').style.color = 'var(--color-text-danger)';
+    driftLabel.style.color = 'var(--color-text-danger)';
+    driftLabel.textContent = 'State: Critical — Collections Escalation';
+  }
+}
+updatePD();
+</script>
