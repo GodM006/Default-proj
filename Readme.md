@@ -1,3 +1,5 @@
+https://drive.google.com/file/d/1ZtNn_WdFJxZBzgr6apXxoELX-YlfvVCm/view?usp=sharing
+
 # Dynamic Risk Portfolio Rebalancer
 ## Enterprise Architecture Blueprint
 
